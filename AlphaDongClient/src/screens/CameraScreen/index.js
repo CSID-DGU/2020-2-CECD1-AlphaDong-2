@@ -1,29 +1,19 @@
-import React, {Component} from 'react';
-import {
-    View,
-    Text,
-    Button,
-    StyleSheet
-} from 'react-native';
-export default class CameraScreen extends Component{
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-    render(){
-        return (
-            <View style={styles.container}>
-                <Text>Camera thing</Text>
-                <Button
-                    title='back'
-                    onPress={() => this.props.navigation.goBack()} />
-            </View>
-        );
-    }
-}
+export const CameraScreen = () => {
+  return (
+    <View style={styles.container}>
+      <Text>Camera</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-})
+  container: {
+    flex: 1,
+    backgroundColor: "#81ecec",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

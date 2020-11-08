@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import {
     View,
     TouchableOpacity,
-    Dimesions,
+    Dimensions,
+    Text,
     StyleSheet,
 } from "react-native";
 
@@ -16,7 +17,6 @@ export const TabBar = ({
     return (
     <View style={[style.tabContainer, { width: totalWidth }]}>
         <View style={{ flexDirection: "row" }}>
-            <View style={style.slider}/>
                 {state.routes.map((route, index) => {
                     const { options } = descriptors[route.key];
                     const label =
@@ -35,6 +35,7 @@ export const TabBar = ({
                         if (!isFocused && !event.defaultPrevented) {
                             navigation.navigate(route.name);
                         }
+                    };
                         const onLongPress = () => {
                             navigation.emit({
                                 type: "tabLongPress",
@@ -52,17 +53,21 @@ export const TabBar = ({
                             style={{ flex: 1 }}
                             key={index}
                             >
-                            Tab
+                            <View       style={{
+                                height: "100%",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}><Text>{label.toString()}</Text></View>
                             </TouchableOpacity>
                         );
-                    }})}
+                    })}
         </View>
       </View>
     );
   };
   const style = StyleSheet.create({
     tabContainer: {
-      height: 60,
+      height: 88,
       shadowOffset: {
         width: 0,
         height: -1,
@@ -76,13 +81,4 @@ export const TabBar = ({
       position: "absolute",
       bottom: 0,
     },
-    slider: {
-      height: 5,
-      position: "absolute",
-      top: 0,
-      left: 10,
-      backgroundColor: blue,
-      borderRadius: 10,
-      width: 50
-  },
   });

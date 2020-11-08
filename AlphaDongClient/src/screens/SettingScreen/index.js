@@ -1,29 +1,19 @@
-import React, {Component} from 'react';
-import {
-    View,
-    Text,
-    Button,
-    StyleSheet
-} from 'react-native';
-export default class SettingScreen extends Component{
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-    render(){
-        return (
-            <View style={styles.container}>
-                <Text>Setting thing</Text>
-                <Button
-                    title='back'
-                    onPress={() => this.props.navigation.goBack()} />
-            </View>
-        );
-    }
-}
+export const SettingScreen = () => {
+  return (
+    <View style={styles.container}>
+      <Text>Setting</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-})
+  container: {
+    flex: 1,
+    backgroundColor: "#81ecec",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

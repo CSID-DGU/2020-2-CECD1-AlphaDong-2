@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import {
+  Dimensions,
+} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 
 const View = styled.View`
@@ -20,7 +23,7 @@ const Touchable = styled.TouchableOpacity``;
 
 export const CameraScreen = () => {
   const cameraRef = React.useRef(null); // useRef로 camera를 위한 ref를 하나 만들어주고
-
+  const totalWidth = Dimensions.get('window').width;
   const takePhoto = async () => {
     console.log('cameraRef', cameraRef);
     if (cameraRef) {
@@ -37,8 +40,8 @@ export const CameraScreen = () => {
       <RNCamera
         ref={cameraRef}
         style={{
-          width: 200,
-          height: 200,
+          width:'100%',
+          height:'100%',
         }}
         captureAudio={false}
       />

@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
 export const SettingScreen = () => {
   return (
@@ -12,8 +12,8 @@ export const SettingScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#81ecec",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#F2F3F5',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

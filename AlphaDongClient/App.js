@@ -23,20 +23,18 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import {BottomMenu} from "./src/components/BottomMenu";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { NavigationContainer } from "@react-navigation/native";
+import {BottomMenu} from './src/components/BottomMenu';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {NavigationContainer} from '@react-navigation/native';
 const App: () => React$Node = () => {
   return (
     <>
       <NavigationContainer>
         <SafeAreaProvider>
-        <BottomMenu/>
-
-      
-      </SafeAreaProvider>
+          <BottomMenu />
+        </SafeAreaProvider>
       </NavigationContainer>
-      </>
+    </>
   );
 };
 

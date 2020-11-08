@@ -1,8 +1,6 @@
-FROM ubuntu:20.04.1
-RUN apt-get update -y
-RUN apt-get install -y python-pip python-dev build-essential
+FROM python
 COPY . /app
 WORKDIR /app
-RUN pip install -r requirements.txt
-ENTRYPOINT ["python"]
-CMD ["app.py"]
+RUN pip install flask
+EXPOSE 5000
+CMD ["python", "app.py"]

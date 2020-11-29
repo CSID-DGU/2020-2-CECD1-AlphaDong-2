@@ -1,10 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {ResultItemList} from '../components/ResultItemList';
 
 export const MainScreen = () => {
   return (
     <View style={styles.container}>
       <Text>Main</Text>
+      <ResultItemList />
     </View>
   );
 };

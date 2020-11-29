@@ -23,6 +23,7 @@ export const TabBar = ({state, descriptors, navigation}) => {
               : route.name;
           const isFocused = state.index === index;
           const onPress = () => {
+            console.log("jhe");
             const event = navigation.emit({
               type: 'tabPress',
               target: route.key,

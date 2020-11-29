@@ -22,7 +22,10 @@ const Button = styled.View`
   width: 100%;
   height: 64px;
   border-radius: 16px;
-  background-color: white;
+  background-color: #ebdf37;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Touchable = styled.TouchableOpacity`
@@ -32,6 +35,69 @@ const Touchable = styled.TouchableOpacity`
   align-items: center;
   width: 100%;
 `;
+
+const GuideLine = styled.View`
+  width: 8px;
+  height: 56px;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 8px;
+`;
+
+const GuideLineVert = styled.View`
+  width: 56px;
+  height: 8px;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 8px;
+`;
+
+const GuideContainerTopLeft = styled.View`
+  position: absolute;
+  top: 24px;
+  left: 24px;
+`;
+const GuideContainerTopRight = styled.View`
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  transform: rotate(90deg);
+`;
+const GuideContainerBottomLeft = styled.View`
+  position: absolute;
+  bottom: 184px;
+  left: 24px;
+  transform: rotate(270deg);
+`;
+const GuideContainerBottomRight = styled.View`
+  position: absolute;
+  bottom: 184px;
+  right: 24px;
+  transform: rotate(180deg);
+`;
+
+const Guide = (pos) => {
+  return (
+    <>
+      <GuideContainerTopLeft>
+        <GuideLine />
+        <GuideLineVert />
+      </GuideContainerTopLeft>
+      <GuideContainerTopRight>
+        <GuideLine />
+        <GuideLineVert />
+      </GuideContainerTopRight>
+      <GuideContainerBottomLeft>
+        <GuideLine />
+        <GuideLineVert />
+      </GuideContainerBottomLeft>
+      <GuideContainerBottomRight>
+        <GuideLine />
+        <GuideLineVert />
+      </GuideContainerBottomRight>
+    </>
+  );
+};
 
 const BtnText = styled.Text``;
 
@@ -62,13 +128,9 @@ export const CameraScreen = () => {
         captureAudio={false}
         type={camType}
       />
+      <Guide />
       <View>
         <ButtonContainer>
-          <Touchable onPress={takePhoto}>
-            <Button>
-              <BtnText>사진 촬영</BtnText>
-            </Button>
-          </Touchable>
           <Touchable onPress={takePhoto}>
             <Button>
               <BtnText>사진 촬영</BtnText>

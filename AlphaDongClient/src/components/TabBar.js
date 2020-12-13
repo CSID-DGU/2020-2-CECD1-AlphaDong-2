@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export const TabBar = ({state, descriptors, navigation}) => {
   const totalWidth = Dimensions.get('window').width;
@@ -55,6 +56,7 @@ export const TabBar = ({state, descriptors, navigation}) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
+                <Text>😀</Text>
                 <Text>{label.toString()}</Text>
               </View>
             </TouchableOpacity>

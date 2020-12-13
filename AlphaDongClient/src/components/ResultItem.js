@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, Image} from 'react-native';
 import styled from 'styled-components';
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
   display: flex;
   width: 100%;
   flex-direction:row;

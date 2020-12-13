@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import {Dimensions} from 'react-native';
 import {RNCamera} from 'react-native-camera';
+import CameraRoll from "@react-native-community/cameraroll";
 
 const View = styled.View`
   position: absolute;
@@ -113,7 +114,11 @@ export const CameraScreen = () => {
         quality: 1,
         exif: true,
       });
-      console.log('😻 data', data);
+      console.log('😻 data =====>', data);
+      if (data) {
+        const result = await CameraRoll.save(data.uri);
+        console.log("🍕 result ========>", result);
+      }
     }
   };
 

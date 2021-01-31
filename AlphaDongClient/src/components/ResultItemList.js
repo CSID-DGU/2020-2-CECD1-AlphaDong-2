@@ -12,23 +12,18 @@ const Container = styled.FlatList`
 export const ResultItemList = () => {
   const [data, setData] = useState([
     {
-      key: 4,
-      img_url: 'http://placekitten.com/400/400',
-      vin_num: 'WDDLJ6FB3HA203319',
-    },
-    {
       key: 3,
-      img_url: 'http://placekitten.com/400/400',
+      img_url: 'content://media/external_primary/images/media/33722',
       vin_num: 'WDDLJ6FB3HA203319',
     },
     {
       key: 2,
-      img_url: 'http://placekitten.com/400/400',
+      img_url: 'file:///data/user/0/com.alphadongclient/cache/Camera/bfb77526-0124-4cc6-8301-01b660f4510c.jpg',
       vin_num: 'WDDLJ6FB3HA203319',
     },
     {
       key: 1,
-      img_url: 'http://placekitten.com/400/400',
+      img_url: 'http://placekitten.com/600/400',
       vin_num: 'WDDLJ6FB3HA203319',
     },
   ]);

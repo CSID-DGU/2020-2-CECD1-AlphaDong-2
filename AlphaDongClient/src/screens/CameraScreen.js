@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {Dimensions} from 'react-native';
+import {Dimensions, Image} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import CameraRoll from "@react-native-community/cameraroll";
 
@@ -102,11 +102,11 @@ const Guide = (pos) => {
 
 const BtnText = styled.Text``;
 
-export const CameraScreen = () => {
+export const CameraScreen = ({navigation}) => {
   const [camType, setCamType] = useState('back');
   const cameraRef = React.useRef(null); // useRef로 camera를 위한 ref를 하나 만들어주고
   const totalWidth = Dimensions.get('window').width;
-
+  CameraRoll.getAlbums().then((r)=>console.log(r));
   const takePhoto = async () => {
     console.log('cameraRef', cameraRef);
     if (cameraRef) {
@@ -115,6 +115,7 @@ export const CameraScreen = () => {
         exif: true,
       });
       console.log('😻 data =====>', data);
+      navigation.navigate('imageDetail', {imagePath: data.uri});
       if (data) {
         const result = await CameraRoll.save(data.uri);
         console.log("🍕 result ========>", result);

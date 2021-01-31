@@ -27,6 +27,19 @@ const ContentItem = styled.Text`
 `;
 
 export const ResultItem = ({item}) => {
+  const onPress = () => {
+    console.log("jhe");
+    const event = navigation.emit({
+      type: 'tabPress',
+      target: route.key,
+      canPreventDefault: true,
+    });
+    if (!isFocused && !event.defaultPrevented) {
+      navigation.navigate(route.name);
+    }
+  };
+
+
   return (
     <Container>
       <ImageContainer source={{uri: item.img_url}} style={{width: 96, height: 80}} />

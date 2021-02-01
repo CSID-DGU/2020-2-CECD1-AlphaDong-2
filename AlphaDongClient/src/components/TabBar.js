@@ -23,8 +23,19 @@ export const TabBar = ({state, descriptors, navigation}) => {
               ? options.title
               : route.name;
           const isFocused = state.index === index;
+          let iconName;
+          if (label == 'main') {
+            iconName = 'home';
+          } else if (label == 'camera') {
+            iconName = 'camera';
+          } else {
+            iconName = 'settings';
+          }
+          if (!isFocused) {
+            iconName = iconName.concat('-outline');
+          }
           const onPress = () => {
-            console.log("jhe");
+            console.log('jhe');
             const event = navigation.emit({
               type: 'tabPress',
               target: route.key,
@@ -56,7 +67,7 @@ export const TabBar = ({state, descriptors, navigation}) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <Text>😀</Text>
+                <Icon name={`${iconName}`} size={24} color="#2C3351" />
                 <Text>{label.toString()}</Text>
               </View>
             </TouchableOpacity>

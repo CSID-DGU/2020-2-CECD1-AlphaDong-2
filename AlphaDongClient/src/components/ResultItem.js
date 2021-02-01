@@ -24,6 +24,7 @@ const ContentContainer = styled.View`
 const ContentItem = styled.Text`
     font-weight: bold;
     margin-bottom: 8px;
+    font-family: 'Poppins-Medium';
 `;
 
 export const ResultItem = ({item}) => {

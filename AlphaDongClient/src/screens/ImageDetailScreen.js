@@ -19,7 +19,7 @@ const ButtonContainer = styled.View`
   margin-top: 16px;
   position: absolute;
   bottom: 88px;
-  padding: 0px 8px;
+  padding: 0px 16px;
 `;
 const Touchable = styled.TouchableOpacity`
   flex: 1;
@@ -46,7 +46,6 @@ const ImageContainer = styled.View`
 `;
 const BtnText = styled.Text`
     color: #FAFAFA;
-    font-family: 'Poppins-Medium';
     font-size: 16px;
 `;
 

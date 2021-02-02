@@ -11,7 +11,8 @@ import {
 import AutoHeightImage from 'react-native-auto-height-image';
 import {Dimensions} from 'react-native';
 import ImageResizer from 'react-native-image-resizer';
-import CameraRoll from '@react-native-community/cameraroll';
+import CameraRoll, {save} from '@react-native-community/cameraroll';
+import {CustomButton} from '../components/CustomButton';
 
 const ButtonContainer = styled.View`
   display: flex;
@@ -20,35 +21,16 @@ const ButtonContainer = styled.View`
   position: absolute;
   bottom: 88px;
   padding: 0px 16px;
+  align-items: flex-end;
+  background-color: rebeccapurple;
 `;
-const Touchable = styled.TouchableOpacity`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 8px;
-`;
-const Button = styled.View`
-  width: 100%;
-  height: 64px;
-  border-radius: 16px;
-  background-color: #2C3351;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+
 const ImageContainer = styled.View`
   display: flex;
   justify-content: center;
   height: 100%;
   padding-bottom: 200px;
 `;
-const BtnText = styled.Text`
-    color: #FAFAFA;
-    font-size: 16px;
-`;
-
 
 export const ImageDetailScreen = ({route}) => {
   const [imagePath, setImagePath] = useState(route.params.imagePath);
@@ -92,16 +74,8 @@ export const ImageDetailScreen = ({route}) => {
         />
       </ImageContainer>
       <ButtonContainer>
-        <Touchable onPress={rotateImage}>
-          <Button>
-            <BtnText>Rotate</BtnText>
-          </Button>
-        </Touchable>
-        <Touchable onPress={saveImage}>
-          <Button>
-            <BtnText>Save</BtnText>
-          </Button>
-        </Touchable>
+        <CustomButton title="Rotate" onPress={rotateImage} width="50%" />
+        <CustomButton title="Save" onPress={saveImage} width="50%" />
       </ButtonContainer>
     </View>
   );

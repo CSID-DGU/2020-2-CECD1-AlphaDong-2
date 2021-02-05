@@ -18,7 +18,8 @@ export const ResultItemList = () => {
     },
     {
       key: 2,
-      img_url: 'file:///data/user/0/com.alphadongclient/cache/Camera/bfb77526-0124-4cc6-8301-01b660f4510c.jpg',
+      img_url:
+        'file:///data/user/0/com.alphadongclient/cache/Camera/bfb77526-0124-4cc6-8301-01b660f4510c.jpg',
       vin_num: 'WDDLJ6FB3HA203319',
     },
     {
@@ -29,16 +30,16 @@ export const ResultItemList = () => {
   ]);
 
   useEffect(() => {
-    axios.get('http://50.17.185.42:5000/data').then((res) => {
+    axios.get('http://52.78.241.187:5001/data').then((res) => {
       console.log(res.data);
       setData(res.data.data);
     });
   }, []);
 
   return (
-      <Container
-        data={data}
-        keyExtractor={(item) => String(item.key)}
-        renderItem={ResultItem}></Container>
+    <Container
+      data={data}
+      keyExtractor={(item) => String(item.key)}
+      renderItem={ResultItem}></Container>
   );
 };

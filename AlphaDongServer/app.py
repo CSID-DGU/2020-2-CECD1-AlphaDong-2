@@ -19,7 +19,7 @@ def generateTestData(num):
     print(result)
     return result;
 
-
+# 테스트
 @app.route("/")
 def hello():
     return jsonify(test_output)

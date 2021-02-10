@@ -27,9 +27,9 @@ def hello():
 @app.route("/detect", methods=['POST'])
 def detect():
     if request.method == 'POST':
-        # file = request.files['file']
-        # img_bytes = file.read()
-        return jsonify(test_output)
+        file = request.files['file']
+        img_bytes = file.read()
+        return jsonify(img_bytes)
     else:
         return jsonify({'method':request.method})
 

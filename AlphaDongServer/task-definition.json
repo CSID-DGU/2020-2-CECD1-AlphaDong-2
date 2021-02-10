@@ -11,7 +11,6 @@
             ],
             "command": [],
             "image": "779516070506.dkr.ecr.ap-northeast-2.amazonaws.com/alphadong-server:latest",
-            "workingDirectory": "/app",
             "cpu": 10,
             "memory": 300,
             "name": "alphadongserver"

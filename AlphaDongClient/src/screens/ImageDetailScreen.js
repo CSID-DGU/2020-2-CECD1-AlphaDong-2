@@ -13,6 +13,7 @@ import {Dimensions} from 'react-native';
 import ImageResizer from 'react-native-image-resizer';
 import CameraRoll, {save} from '@react-native-community/cameraroll';
 import {CustomButton} from '../components/CustomButton';
+import axios from 'axios';
 
 const ButtonContainer = styled.View`
   display: flex;
@@ -65,6 +66,16 @@ export const ImageDetailScreen = ({route}) => {
     );
   };
 
+  const sendIamge = () => {
+    const formData = new FormData();
+    formData.append('file', imagePath);
+    axios.post('http://52.78.241.187:5001/detect', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  };
+
   return (
     <View style={styles.container}>
       <ImageContainer>
@@ -75,7 +86,7 @@ export const ImageDetailScreen = ({route}) => {
       </ImageContainer>
       <ButtonContainer>
         <CustomButton title="Rotate" onPress={rotateImage} width="50%" />
-        <CustomButton title="Save" onPress={saveImage} width="50%" />
+        <CustomButton title="Save" onPress={sendIamge} width="50%" />
       </ButtonContainer>
     </View>
   );

@@ -27,6 +27,7 @@ def hello():
 @app.route("/detect", methods=['POST'])
 def detect():
     if request.method == 'POST':
+        print(request)
         print(request.files)
         print("test")
         # file = request.files['file']

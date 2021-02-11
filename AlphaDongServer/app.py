@@ -27,10 +27,13 @@ def hello():
 @app.route("/detect", methods=['POST'])
 def detect():
     if request.method == 'POST':
-        print(request)
-        print(request.files)
-        print("test")
-        # file = request.files['file']
+        if 'file' not in request.files:
+            return jsonify({"result" : "no file"})
+
+        if file.filename == '':
+            return jsonify({"result": "no filename"})
+        file = request.files['file']
+        
         # img_bytes = file.read()
         return jsonify({"hello":"hello"})
     else:

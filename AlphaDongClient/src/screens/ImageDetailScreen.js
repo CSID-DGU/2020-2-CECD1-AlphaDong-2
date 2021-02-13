@@ -68,17 +68,30 @@ export const ImageDetailScreen = ({route}) => {
 
   const sendIamge = () => {
     const formData = new FormData();
-    formData.append('file', imagePath, 'image');
-    formData.append('key', 'hello');
-    axios.post(
-      'https://14ups01s6a.execute-api.us-east-1.amazonaws.com/default/helloLambda',
-      formData,
-      {
+    formData.append('files', {
+      name: 'testimage',
+      type: 'image/jpeg',
+      uri: imagePath,
+    });
+    // fetch('http://52.78.241.187:5001/detect', {
+    //   method: 'POST',
+    //   body: formData,
+    // })
+    axios
+      .post('http://52.78.241.187:5001/detect', formData, {
         headers: {
           'content-type': 'multipart/form-data',
         },
-      },
-    );
+      })
+      .then((res) => {
+        ToastAndroid.show(
+          `${res.data.vin_num} 저장되었습니다.`,
+          ToastAndroid.SHORT,
+        );
+      })
+      .catch((error) => {
+        ToastAndroid.show(`${error}`, ToastAndroid.SHORT);
+      });
   };
 
   return (

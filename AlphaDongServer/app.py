@@ -1,43 +1,51 @@
 from flask import Flask, jsonify, request
+from werkzeug.datastructures import ImmutableMultiDict
 import random
 
 app = Flask(__name__)
 
 test_output = {
-    "key":1,
-    "img_url" : "http://placekitten.com/400/400",
-    "vin_num" : "WDDLJ6FB3HA203319a"
+    "key": 1,
+    "img_url": "http://placekitten.com/400/400",
+    "vin_num": "WDDLJ6FB3HA203319a"
 }
+
+
 def generateTestData(num):
     result = []
     for i in range(0, num):
         result.append({
-            "key": i,    
-            "img_url" : f'http://placekitten.com/{random.randrange(400,401+i*10)}/{random.randrange(400,401+i*10)}',
-            "vin_num" : f'WDDLJ6FB3HA20{random.randrange(1000,9999)}a'
+            "key": i,
+            "img_url": f'http://placekitten.com/{random.randrange(400,401+i*10)}/{random.randrange(400,401+i*10)}',
+            "vin_num": f'WDDLJ6FB3HA20{random.randrange(1000,9999)}a'
         })
     print(result)
-    return result;
+    return result
 
 # 테스트
+
+
 @app.route("/")
 def hello():
     return jsonify(test_output)
 
+
 @app.route("/detect", methods=['POST'])
 def detect():
     if request.method == 'POST':
+        print(request.form)
+        print(request.data)
         if 'file' not in request.files:
-            return jsonify({"result" : "no file"})
+            return jsonify({"result": "no file"})
 
         if file.filename == '':
             return jsonify({"result": "no filename"})
         file = request.files['file']
-        
+
         # img_bytes = file.read()
-        return jsonify({"hello":"hello"})
+        return jsonify({"hello": "hello"})
     else:
-        return jsonify({'method':request.method})
+        return jsonify({'method': request.method})
 
 
 # /data?page=1
@@ -49,8 +57,8 @@ def getData():
 
     test_result = generateTestData(page*per_page)
 
-    return jsonify({'page':page, 'data': test_result})
-    
+    return jsonify({'page': page, 'data': test_result})
 
-if __name__=='__main__':
-    app.run(debug=True, port=5001,host='0.0.0.0')
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5001, host='0.0.0.0')

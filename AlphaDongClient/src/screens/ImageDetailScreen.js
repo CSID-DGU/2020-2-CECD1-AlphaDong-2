@@ -68,12 +68,17 @@ export const ImageDetailScreen = ({route}) => {
 
   const sendIamge = () => {
     const formData = new FormData();
-    formData.append('file', imagePath);
-    axios.post('http://52.78.241.187:5001/detect', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
+    formData.append('file', imagePath, 'image');
+    formData.append('key', 'hello');
+    axios.post(
+      'https://14ups01s6a.execute-api.us-east-1.amazonaws.com/default/helloLambda',
+      formData,
+      {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
       },
-    });
+    );
   };
 
   return (

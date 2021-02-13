@@ -30,7 +30,7 @@ export const ResultItemList = () => {
   ]);
 
   useEffect(() => {
-    axios.get('http://52.78.241.187:5001/data').then((res) => {
+    axios.get('http://52.78.241.187:5001/').then((res) => {
       console.log(res.data);
       setData(res.data.data);
     });

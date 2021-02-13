@@ -3,6 +3,7 @@ from typing import List
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 import os
+import random
 
 app = FastAPI()
 test_output = {

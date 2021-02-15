@@ -32,5 +32,5 @@ def read_root():
 
 
 @app.post("/detect")
-async def create_files(files: List[bytes] = File(...)):
+async def detect_vin_image(files: List[bytes] = File(...)):
     return {"vin_num": 'WDDLAF23AF234F'}

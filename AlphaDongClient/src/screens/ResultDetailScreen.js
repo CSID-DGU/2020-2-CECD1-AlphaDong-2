@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-export const SettingScreen = () => {
+export const ResultDetailScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Setting</Text>
+      <Text>ResultDetailScreen</Text>
     </View>
   );
 };

@@ -8,8 +8,9 @@ const Container = styled.View`
   align-items: flex-start;
   justify-content: flex-start;
   margin-bottom: 16px;
-  width:100%;
-  padding-left:8px;
+  width: 100%;
+  padding-left: 8px;
+  margin-top: 16px;
 `;
 
 const HeaderTitle = styled.Text`

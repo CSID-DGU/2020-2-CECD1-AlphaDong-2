@@ -1,13 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  ToastAndroid,
-} from 'react-native';
+import {StyleSheet, View, Image, ToastAndroid} from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 import {Dimensions} from 'react-native';
 import ImageResizer from 'react-native-image-resizer';
@@ -33,7 +26,7 @@ const ImageContainer = styled.View`
   padding-bottom: 200px;
 `;
 
-export const ImageDetailScreen = ({route}) => {
+export const CameraResultScreen = ({route}) => {
   const [imagePath, setImagePath] = useState(route.params.imagePath);
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
@@ -73,10 +66,6 @@ export const ImageDetailScreen = ({route}) => {
       type: 'image/jpeg',
       uri: imagePath,
     });
-    // fetch('http://52.78.241.187:5001/detect', {
-    //   method: 'POST',
-    //   body: formData,
-    // })
     axios
       .post('http://52.78.241.187:5001/detect', formData, {
         headers: {
@@ -113,6 +102,6 @@ export const ImageDetailScreen = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F3F5',
+    backgroundColor: '#fff',
   },
 });

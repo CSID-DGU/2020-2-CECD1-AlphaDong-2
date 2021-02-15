@@ -49,7 +49,7 @@ export const CameraScreen = ({navigation}) => {
         exif: true,
       });
       console.log('😻 data =====>', data);
-      navigation.navigate('imageDetail', {imagePath: data.uri});
+      navigation.navigate('CameraResult', {imagePath: data.uri});
       if (data) {
         const result = await CameraRoll.save(data.uri);
         console.log('🍕 result ========>', result);

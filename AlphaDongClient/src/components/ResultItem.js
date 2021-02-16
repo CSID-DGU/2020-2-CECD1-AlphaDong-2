@@ -49,8 +49,8 @@ export const ResultItem = ({item, onPress}) => {
       <FastImage
         style={{
           borderRadius: 8,
-          width: 112,
-          height: 112,
+          width: 104,
+          height: 104,
         }}
         source={{
           uri: item.img_url,

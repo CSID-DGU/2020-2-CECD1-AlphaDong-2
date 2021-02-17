@@ -16,7 +16,6 @@ const ButtonContainer = styled.View`
   bottom: 88px;
   padding: 0px 16px;
   align-items: flex-end;
-  background-color: rebeccapurple;
 `;
 
 const ImageContainer = styled.View`
@@ -26,7 +25,7 @@ const ImageContainer = styled.View`
   padding-bottom: 200px;
 `;
 
-export const CameraResultScreen = ({route}) => {
+export const CameraResultScreen = ({route, navigation}) => {
   const [imagePath, setImagePath] = useState(route.params.imagePath);
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
@@ -59,7 +58,7 @@ export const CameraResultScreen = ({route}) => {
     );
   };
 
-  const sendIamge = () => {
+  const sendImage = () => {
     const formData = new FormData();
     formData.append('files', {
       name: 'testimage',
@@ -77,6 +76,7 @@ export const CameraResultScreen = ({route}) => {
           `${res.data.vin_num} 저장되었습니다.`,
           ToastAndroid.SHORT,
         );
+        navigation.navigate('main', {screen: 'ResultDetail'});
       })
       .catch((error) => {
         ToastAndroid.show(`${error}`, ToastAndroid.SHORT);
@@ -93,7 +93,7 @@ export const CameraResultScreen = ({route}) => {
       </ImageContainer>
       <ButtonContainer>
         <CustomButton title="Rotate" onPress={rotateImage} width="50%" />
-        <CustomButton title="Save" onPress={sendIamge} width="50%" />
+        <CustomButton title="Save" onPress={sendImage} width="50%" />
       </ButtonContainer>
     </View>
   );

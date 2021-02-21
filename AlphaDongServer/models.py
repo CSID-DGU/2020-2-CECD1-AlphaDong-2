@@ -3,7 +3,9 @@ from pymongo import MongoClient
 from bson import ObjectId
 from typing import Optional
 import datetime
-client = MongoClient()
+client = MongoClient(host='host.docker.internal', port=9017,
+                     username='root',
+                     password='alphadong1!',)
 db = client['alphadong']
 
 

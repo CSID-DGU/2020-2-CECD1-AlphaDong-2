@@ -19,7 +19,6 @@ def generateTestData(num):
             "img_url": f'http://placekitten.com/{random.randrange(400,401+i*10)}/{random.randrange(400,401+i*10)}',
             "vin_num": f'WDDLJ6FB3HA20{random.randrange(1000,9999)}a'
         })
-    print(result)
     return result
 
 # 테스트

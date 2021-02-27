@@ -43,7 +43,10 @@ const ContentItemTimeStamp = styled.Text`
   font-family: 'Poppins-Medium';
 `;
 
-export const ResultItem = ({item, onPress}) => {
+export const ResultItem = ({item, navigation}) => {
+  const onPress = () => {
+    navigation.navigate('ResultDetail', item);
+  };
   return (
     <Container onPress={onPress}>
       <FastImage

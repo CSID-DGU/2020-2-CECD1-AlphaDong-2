@@ -9,7 +9,7 @@ const Container = styled.FlatList`
   margin-bottom: 80px;
 `;
 
-export const ResultItemList = ({onPress}) => {
+export const ResultItemList = ({navigation}) => {
   const [data, setData] = useState([
     {
       key: 3,
@@ -30,7 +30,7 @@ export const ResultItemList = ({onPress}) => {
   ]);
 
   useEffect(() => {
-    axios.get('http://52.78.241.187:5001/').then((res) => {
+    axios.get('http://52.78.241.187:5001/data').then((res) => {
       console.log(res.data);
       setData(res.data);
     });
@@ -41,7 +41,7 @@ export const ResultItemList = ({onPress}) => {
       data={data}
       keyExtractor={(item) => String(item.key)}
       renderItem={({item}) => (
-        <ResultItem item={item} onPress={onPress} />
+        <ResultItem item={item} navigation={navigation} />
       )}></Container>
   );
 };

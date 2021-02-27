@@ -47,20 +47,20 @@ const images = [
   },
 ];
 
-export const ResultDetailScreen = () => {
+export const ResultDetailScreen = ({route}) => {
   const {height, width} = Dimensions.get('window');
   const [isModal, setModal] = useState(false);
-
+  const {img_url, vin_num, created_at} = route.params;
   useEffect(() => {
     const backAction = () => {
       setModal(false);
     };
+    console.log('detail page');
 
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       backAction,
     );
-
     return () => backHandler.remove();
   }, []);
 
@@ -82,19 +82,26 @@ export const ResultDetailScreen = () => {
             resizeMode: 'contain',
             backgroundColor: 'black',
           }}
-          source={{uri: 'http://placekitten.com/600/400'}}
+          source={{uri: img_url}}
         />
       </ImageContainer>
       <ContentContainer>
         <VinNumberContainer>
-          <VinText>ZFF79ALL1J0234392</VinText>
-          <TimeStampText>20분전</TimeStampText>
+          <VinText>{vin_num}</VinText>
+          <TimeStampText>{created_at}</TimeStampText>
         </VinNumberContainer>
         <Text>ResultDetailScreen</Text>
         <Text>뭔가 뭔가 차량 관련한 정보가 들어가야하는 곳</Text>
       </ContentContainer>
       <Modal visible={isModal} transparent={true} onRequestClose={hideModal}>
-        <ImageViewer imageUrls={images} />
+        <ImageViewer
+          imageUrls={[
+            {
+              url: img_url,
+              width: width,
+            },
+          ]}
+        />
       </Modal>
     </View>
   );

@@ -16,7 +16,7 @@ import json
 # s3 connection
 s3 = s3_connection()
 BUCKET_NAME = development.BUCKET_NAME
-s3_url = "https://alphdong.s3.ap-northeast-2.amazonaws.com/"
+s3_url = "https://alphavin.s3.ap-northeast-2.amazonaws.com/"
 
 
 app = FastAPI()

@@ -14,7 +14,7 @@ export const ResultItemList = ({navigation}) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://52.78.241.187:5001/data').then((res) => {
+    axios.get('http://52.78.124.16:5001/data').then((res) => {
       console.log(res.data);
       setData(res.data);
     });

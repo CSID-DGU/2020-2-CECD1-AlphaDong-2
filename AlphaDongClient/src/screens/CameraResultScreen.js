@@ -66,7 +66,7 @@ export const CameraResultScreen = ({route, navigation}) => {
       uri: imagePath,
     });
     axios
-      .post('http://52.78.241.187:5001/detect', formData, {
+      .post('http://52.78.124.16:5001/detect', formData, {
         headers: {
           'content-type': 'multipart/form-data',
         },

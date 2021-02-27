@@ -9,3 +9,5 @@ if [ "d" == "$1" ]; then
 else
     bash docker.sh
 fi
+
+# CMD ["uvicorn", "fast:app", "--host", "0.0.0.0", "--port", "5001"]

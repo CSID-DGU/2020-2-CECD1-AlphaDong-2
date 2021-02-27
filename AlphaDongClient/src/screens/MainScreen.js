@@ -14,9 +14,6 @@ const Container = styled.View`
 `;
 
 export const MainScreen = ({navigation}) => {
-  const onPress = (item) => {
-    navigation.navigate('ResultDetail', item);
-  };
   return (
     <Container>
       <Header title={'최근 기록'} />

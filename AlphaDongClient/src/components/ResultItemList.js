@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, FlatList, Text, View} from 'react-native';
+import {RefreshControl, StyleSheet, FlatList, Text, View} from 'react-native';
 import styled from 'styled-components';
 import axios from 'axios';
 import {ResultItem} from './ResultItem';
@@ -10,38 +10,30 @@ const Container = styled.FlatList`
 `;
 
 export const ResultItemList = ({navigation}) => {
-  const [data, setData] = useState([
-    {
-      key: 3,
-      img_url: 'content://media/external_primary/images/media/33722',
-      vin_num: 'WDDLJ6FB3HA203319',
-    },
-    {
-      key: 2,
-      img_url:
-        'file:///data/user/0/com.alphadongclient/cache/Camera/bfb77526-0124-4cc6-8301-01b660f4510c.jpg',
-      vin_num: 'WDDLJ6FB3HA203319',
-    },
-    {
-      key: 1,
-      img_url: 'http://placekitten.com/600/400',
-      vin_num: 'WDDLJ6FB3HA203319',
-    },
-  ]);
+  const [refreshing, setRefreshing] = useState(false);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios.get('http://52.78.241.187:5001/data').then((res) => {
       console.log(res.data);
       setData(res.data);
     });
-  }, []);
+    setRefreshing(false);
+  }, [refreshing]);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+  };
 
   return (
     <Container
       data={data}
-      keyExtractor={(item) => String(item.key)}
+      keyExtractor={(item) => String(item._id)}
       renderItem={({item}) => (
         <ResultItem item={item} navigation={navigation} />
-      )}></Container>
+      )}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }></Container>
   );
 };

@@ -18,9 +18,3 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: alphadong1!
-  
-  fastapi:
-    build: .
-    ports:
-      - 5001:5001
-    command: uvicorn alphadongserver_fastapi:app --host 0.0.0.0 --port 5001

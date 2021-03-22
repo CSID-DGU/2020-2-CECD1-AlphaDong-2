@@ -8,4 +8,3 @@ def s3_connection():
                       aws_secret_access_key=development.AWS_SECRET_KEY)
     return s3
 
-api = "http://divus.iptime.org:4207/vin/ai-api/ver-0.1.10"

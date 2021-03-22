@@ -12,11 +12,13 @@ import tools as to
 from models import db, Vin
 from datetime import datetime
 import json
+import requests
 
 # s3 connection
 s3 = s3_connection()
 BUCKET_NAME = development.BUCKET_NAME
 s3_url = "https://alphavin.s3.ap-northeast-2.amazonaws.com/"
+api = "http://divus.iptime.org:4207/vin/ai-api/ver-0.1.10"
 
 
 app = FastAPI()
@@ -60,7 +62,10 @@ async def detect_vin_image(files: List[bytes] = File(...)):
     # detection
     image_id = to.generate_img_uuid()
     vin_result = makeRequest(image_file, image_id)
-
+    print(vin_result)
+    headers = {'Content-Type': 'application/json; charset=utf-8'}
+    res = requests.post(api, headers=headers, data=json.dumps(vin_result))
+    print(res.json())
     # generate image uuid
     print(image_id)
 
@@ -72,7 +77,7 @@ async def detect_vin_image(files: List[bytes] = File(...)):
         ContentType='image/jpeg')
 
     # generate db object
-    vin = Vin(vin_num=vin_result,
+    vin = Vin(vin_num="1G1YZ23J9P5803427",
               img_url=f'{s3_url}{image_id}.jpg', created_at=datetime.now())
 
     # insert at db

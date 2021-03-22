@@ -8,14 +8,17 @@ import {
   Modal,
   BackHandler,
   Alert,
+  ScrollView,
 } from 'react-native';
 import styled from 'styled-components';
 import ImageViewer from 'react-native-image-zoom-viewer';
+import {formattedTime} from '../lib/utils';
 
 const ImageContainer = styled.TouchableOpacity``;
 
 const ContentContainer = styled.View`
   margin-top: 16px;
+  margin-bottom: 80px;
   padding: 0 16px;
   display: flex;
   align-items: flex-start;
@@ -41,6 +44,13 @@ const TimeStampText = styled.Text`
   margin-bottom: 16px;
 `;
 
+const ResultScroll = styled.ScrollView`
+  width: 100%;
+  height: 400px;
+  /* flex: 1; */
+  /* flex-direction: column; */
+`;
+
 const images = [
   {
     url: 'http://placekitten.com/600/400',
@@ -50,7 +60,7 @@ const images = [
 export const ResultDetailScreen = ({route}) => {
   const {height, width} = Dimensions.get('window');
   const [isModal, setModal] = useState(false);
-  const {img_url, vin_num, created_at} = route.params;
+  const {img_url, vin_num, full_info, created_at} = route.params;
   useEffect(() => {
     const backAction = () => {
       setModal(false);
@@ -88,10 +98,12 @@ export const ResultDetailScreen = ({route}) => {
       <ContentContainer>
         <VinNumberContainer>
           <VinText>{vin_num}</VinText>
-          <TimeStampText>{created_at}</TimeStampText>
+          <TimeStampText>{formattedTime(created_at)}</TimeStampText>
         </VinNumberContainer>
-        <Text>ResultDetailScreen</Text>
-        <Text>뭔가 뭔가 차량 관련한 정보가 들어가야하는 곳</Text>
+        <Text>인식 결과</Text>
+        <ResultScroll>
+          <Text>{JSON.stringify(JSON.parse(full_info), null, '\t\t\t\t')}</Text>
+        </ResultScroll>
       </ContentContainer>
       <Modal visible={isModal} transparent={true} onRequestClose={hideModal}>
         <ImageViewer

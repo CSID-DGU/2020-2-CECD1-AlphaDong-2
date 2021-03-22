@@ -1,26 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {RefreshControl, StyleSheet, FlatList, Text, View} from 'react-native';
+import {RefreshControl} from 'react-native';
 import styled from 'styled-components';
-import axios from 'axios';
 import {ResultItem} from './ResultItem';
-
+import useResultList from '../lib/hooks/useResultList';
 const Container = styled.FlatList`
   width: 100%;
   margin-bottom: 80px;
 `;
 
 export const ResultItemList = ({navigation}) => {
-  const [refreshing, setRefreshing] = useState(false);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://3.35.188.80:5001/data').then((res) => {
-      console.log(res.data);
-      setData(res.data);
-    });
-    setRefreshing(false);
-  }, [refreshing]);
-
+  const [data, isError, IsLoading, setRefreshing, refreshing] = useResultList();
   const onRefresh = () => {
     setRefreshing(true);
   };

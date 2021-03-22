@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {StyleSheet, View, Image, ToastAndroid} from 'react-native';
+import {BallIndicator} from 'react-native-indicators';
 import AutoHeightImage from 'react-native-auto-height-image';
 import {Dimensions} from 'react-native';
 import ImageResizer from 'react-native-image-resizer';
 import CameraRoll, {save} from '@react-native-community/cameraroll';
 import {CustomButton} from '../components/CustomButton';
-import axios from 'axios';
+import usePostVinImage from '../lib/hooks/usePostVinImage';
+import {formattedTime} from '../lib/utils';
 
 const ButtonContainer = styled.View`
   display: flex;
@@ -18,6 +20,25 @@ const ButtonContainer = styled.View`
   align-items: flex-end;
 `;
 
+const LoadingContainer = styled.View`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+`;
+
+const IndicatorWrapper = styled.View`
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: #000000;
+  opacity: 0.7;
+  border-radius: 40px;
+`;
+
 const ImageContainer = styled.View`
   display: flex;
   justify-content: center;
@@ -25,11 +46,15 @@ const ImageContainer = styled.View`
   padding-bottom: 200px;
 `;
 
+const LoadingText = styled.Text`
+  position: absolute;
+`;
+
 export const CameraResultScreen = ({route, navigation}) => {
   const [imagePath, setImagePath] = useState(route.params.imagePath);
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
-
+  const [isLoading, callBackAPI] = usePostVinImage();
   useEffect(() => {
     Image.getSize(imagePath, (width, height) => {
       setWidth(width);
@@ -50,14 +75,6 @@ export const CameraResultScreen = ({route, navigation}) => {
     });
   };
 
-  const saveImage = () => {
-    CameraRoll.save(imagePath);
-    ToastAndroid.show(
-      `${width} X ${height} 저장되었습니다.`,
-      ToastAndroid.SHORT,
-    );
-  };
-
   const sendImage = () => {
     const formData = new FormData();
     formData.append('files', {
@@ -65,32 +82,26 @@ export const CameraResultScreen = ({route, navigation}) => {
       type: 'image/jpeg',
       uri: imagePath,
     });
-    axios
-      .post('http://3.35.188.80:5001/detect', formData, {
-        headers: {
-          'content-type': 'multipart/form-data',
-        },
-      })
+    callBackAPI(formData)
       .then((res) => {
         ToastAndroid.show(
-          `${res.data.vin_num} 저장되었습니다.`,
+          `${res.data.results} 인식되었습니다.`,
           ToastAndroid.SHORT,
         );
-        // navigation.navigate('main', {
-        //   screen: 'ResultDetail',
-        //   img_url: res.data.img_url,
-        //   vin_num: res.data.vin_num,
-        //   created_at: res.data.created_at,
-        // });
-        navigation.navigate('main');
       })
-      .catch((error) => {
-        ToastAndroid.show(`${error}`, ToastAndroid.SHORT);
+      .catch((e) => {
+        ToastAndroid.show(`에러가 발생했습니다.\n${e}`, ToastAndroid.SHORT);
       });
   };
 
   return (
     <View style={styles.container}>
+      {isLoading && (
+        <LoadingContainer>
+          <IndicatorWrapper />
+          <BallIndicator color="#ffffff" />
+        </LoadingContainer>
+      )}
       <ImageContainer>
         <AutoHeightImage
           source={{uri: imagePath}}
@@ -99,7 +110,7 @@ export const CameraResultScreen = ({route, navigation}) => {
       </ImageContainer>
       <ButtonContainer>
         <CustomButton title="Rotate" onPress={rotateImage} width="50%" />
-        <CustomButton title="Save" onPress={sendImage} width="50%" />
+        <CustomButton title="Detect" onPress={sendImage} width="50%" />
       </ButtonContainer>
     </View>
   );

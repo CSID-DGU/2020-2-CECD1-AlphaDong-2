@@ -49,7 +49,7 @@ def read_root():
 def get_vin_list():
     vin_numbers = []
     for v in db.vins.find():
-        vin_numbers.append(Vin(**v))
+        vin_numbers.insert(0,Vin(**v))
     return vin_numbers
 
 

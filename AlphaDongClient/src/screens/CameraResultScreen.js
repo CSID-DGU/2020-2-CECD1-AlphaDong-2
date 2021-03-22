@@ -76,7 +76,13 @@ export const CameraResultScreen = ({route, navigation}) => {
           `${res.data.vin_num} 저장되었습니다.`,
           ToastAndroid.SHORT,
         );
-        navigation.navigate('main', {screen: 'ResultDetail'});
+        // navigation.navigate('main', {
+        //   screen: 'ResultDetail',
+        //   img_url: res.data.img_url,
+        //   vin_num: res.data.vin_num,
+        //   created_at: res.data.created_at,
+        // });
+        navigation.navigate('main');
       })
       .catch((error) => {
         ToastAndroid.show(`${error}`, ToastAndroid.SHORT);

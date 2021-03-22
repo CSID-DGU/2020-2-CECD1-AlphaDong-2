@@ -65,6 +65,8 @@ async def detect_vin_image(files: List[bytes] = File(...)):
     # print(vin_result)
     headers = {'Content-Type': 'application/json; charset=utf-8'}
     res = requests.post(api, headers=headers, data=json.dumps(vin_result))
+    print(res.json())
+    print(type(res.json()))
     detect_result = res.json()["results"][0]["boxs"][0][1]
     # generate image uuid
     print(image_id)

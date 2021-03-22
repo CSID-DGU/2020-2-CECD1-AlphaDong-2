@@ -27,5 +27,4 @@ def makeRequest(image_file, image_name):
     req["size_img"].append([width, height])
     req["filename"].append(image_name)
 
-    print(len(req["image"]))
     return req

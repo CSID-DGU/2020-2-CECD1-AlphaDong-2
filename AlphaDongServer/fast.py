@@ -4,7 +4,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 import os
 import random
-import detect
+from detect import vin_detect, makeRequest
 from connection import s3_connection
 from config import development
 from pymongo import MongoClient
@@ -58,10 +58,10 @@ async def detect_vin_image(files: List[bytes] = File(...)):
     # check file
     image_file = files[0]
     # detection
-    vin_result = detect.vin_detect(image_file)
+    image_id = to.generate_img_uuid()
+    vin_result = makeRequest(image_file, image_id)
 
     # generate image uuid
-    image_id = to.generate_img_uuid()
     print(image_id)
 
     # save at aws s3

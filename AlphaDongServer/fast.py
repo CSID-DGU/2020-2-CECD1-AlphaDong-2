@@ -62,10 +62,10 @@ async def detect_vin_image(files: List[bytes] = File(...)):
     # detection
     image_id = to.generate_img_uuid()
     vin_result = makeRequest(image_file, image_id)
-    print(vin_result)
+    # print(vin_result)
     headers = {'Content-Type': 'application/json; charset=utf-8'}
     res = requests.post(api, headers=headers, data=json.dumps(vin_result))
-    print(res.json())
+    detect_result = res.json()["boxs"][0][1]
     # generate image uuid
     print(image_id)
 
@@ -77,7 +77,7 @@ async def detect_vin_image(files: List[bytes] = File(...)):
         ContentType='image/jpeg')
 
     # generate db object
-    vin = Vin(vin_num="1G1YZ23J9P5803427",
+    vin = Vin(vin_num=detect_result,
               img_url=f'{s3_url}{image_id}.jpg', created_at=datetime.now())
 
     # insert at db

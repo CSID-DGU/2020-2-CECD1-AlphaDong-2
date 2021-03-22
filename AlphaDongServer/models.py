@@ -30,6 +30,7 @@ class Vin(BaseModel):
     id: Optional[PyObjectId] = Field(alias='_id')
     vin_num: str
     img_url: str
+    full_info: str
     created_at: datetime.datetime
 
     class Config:

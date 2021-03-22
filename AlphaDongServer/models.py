@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from bson import ObjectId
 from typing import Optional
 import datetime
-client = MongoClient(host='mongodb://52.78.124.16', port=9017,
+client = MongoClient(host='mongodb://3.35.188.80', port=9017,
                      username='root',
                      password='alphadong1!',)
 db = client['alphadong']
